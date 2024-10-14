@@ -1,0 +1,113 @@
+{
+    "books": [
+      {
+        "id": 28,
+        "title": "The Hobbit",
+        "price": 34.00,
+        "image": "../img/The Hobbit"
+      },
+      {
+        "id": 27,
+        "title": "The Hitchhikers Guide to the Galaxy",
+        "price": 13.95,
+        "image": "../img/The Hitchhikers Guide to the Galaxy"
+      },
+      {
+        "id": 26,
+        "title": "The Lord Of The Rings",
+        "price": 32.55,
+        "image": "../img/The Lord Of The Rings"
+      },
+      {
+        "id": 25,
+        "title": "The Catcher in the Rye",
+        "price": 4.55,
+        "image": "../img/The Catcher in the Rye"
+      },
+      {
+        "id": 24,
+        "title": "Effective Modern C++",
+        "price": 34.00,
+        "image": "../img/Effective Modern C++"
+      },
+      {
+        "id": 23,
+        "title": "To Kill a Mockingbird",
+        "price": 18.99,
+        "image": "../img/To Kill a Mockingbird"
+      },
+      {
+        "id": 22,
+        "title": "1984",
+        "price": 9.99,
+        "image": "../img/1984"
+      },
+      {
+        "id": 21,
+        "title": "Pride and Prejudice",
+        "price": 12.50,
+        "image": "../img/Pride and Prejudice"
+      },
+      {
+        "id": 20,
+        "title": "Moby-Dick",
+        "price": 15.75,
+        "image": "../img/Moby-Dick"
+      },
+      {
+        "id": 19,
+        "title": "War and Peace",
+        "price": 25.00,
+        "image": "../img/War and Peace"
+      },
+      {
+        "id": 18,
+        "title": "Brave New World",
+        "price": 10.99,
+        "image": "../img/Brave New World"
+      },
+      {
+        "id": 17,
+        "title": "The Great Gatsby",
+        "price": 8.99,
+        "image": "../img/The Great Gatsby"
+      },
+      {
+        "id": 16,
+        "title": "The Brothers Karamazov",
+        "price": 14.50,
+        "image": "../img/The Brothers Karamazov"
+      },
+      {
+        "id": 15,
+        "title": "Crime and Punishment",
+        "price": 13.99,
+        "image": "../img/Crime and Punishment"
+      },
+      {
+        "id": 14,
+        "title": "Frankenstein",
+        "price": 7.99,
+        "image": "../img/Frankenstein"
+      },
+      {
+        "id": 13,
+        "title": "Don Quixote",
+        "price": 20.00,
+        "image": "../img/Don Quixote"
+      },
+      {
+        "id": 12,
+        "title": "The Odyssey",
+        "price": 11.49,
+        "image": "../img/The Odyssey"
+      },
+      {
+        "id": 11,
+        "title": "The Divine Comedy",
+        "price": 19.99,
+        "image": "../img/The Divine Comedy"
+      }
+    ]
+  }
+  
