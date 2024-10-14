@@ -1,0 +1,137 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+.container{
+    width: 100%;
+display: flex;
+}
+.table-container{
+    width: 60%;
+}
+#book-table {
+    width: 100%;
+
+    border-collapse: collapse; 
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff; 
+}
+
+#book-table th, #book-table td {
+    padding: 12px; 
+    text-align: left; 
+    border-bottom: 1px solid #ddd; 
+}
+
+#book-table th {
+    background-color: #2a2036; 
+    color: #fff; 
+}
+
+#book-table tr:hover {
+    background-color: #f1f1f1; 
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between; 
+    gap: 10px;
+}
+#th-Action{
+    width: 35%;
+}
+#th-Title{
+    width: 40%;
+}
+#th-ID{
+    width:5%;
+}
+#th-Price{
+    width: 20%;
+}
+button {
+    flex: 1; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    padding: 8px; 
+    cursor: pointer; 
+}
+.update-button{
+    background-color:#00ff0d; 
+
+}
+.delete-button{
+    background-color:#ff0037; 
+
+}
+.read-button{
+    background-color:#007bff; 
+}
+.update-button:hover{
+    background-color:#00b709; 
+
+}
+.delete-button:hover{
+    background-color:#c9002c; 
+
+}
+.read-button:hover{
+    background-color: #0056b3; 
+}
+
+.prev-btn,.next-btn,.language-toggle{
+    background-color: #777779; 
+
+}
+#book-details {
+    width: 40%;
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#book-title {
+    font-size: 24px;
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+#book-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#book-price {
+    font-size: 18px;
+    color: #007bff;
+    margin: 5px 0;
+}
+
+#book-description {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+}
+
+#rate-book {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#rate-book:hover {
+    background-color: #218838;
+}
