@@ -29,6 +29,7 @@ function displayBookList() {
     const endIndex = startIndex + booksPerPage;
     const currentBooks = books.slice(startIndex, endIndex);
     books.sort((a, b) => a.title.localeCompare(b.title));
+    
 
     currentBooks.forEach(book => {
         const row = document.createElement('tr');
@@ -56,7 +57,7 @@ function displayBookList() {
         const readButton = document.createElement('button');
         readButton.textContent = 'Read';
         readButton.classList.add('read-button');
-        readButton.onclick = () => showBookDetails(book);
+        readButton.onclick = () => readBook(book);
         actionCell.appendChild(readButton);
 
         // כפתור Update
@@ -98,18 +99,12 @@ function changePage(direction) {
     displayBookList();
 }
 
-function showBookDetails(book) {
-    bookTitle.innerHTML = book.title; // הצגת הכותרת
-    bookImage.src = book.image; // הצגת התמונה
-    bookPrice.innerHTML = `$${book.price.toFixed(2)}`; // הצגת המחיר בפורמט נכון
-    bookDescription.innerHTML = book.description; // הצגת התיאור
-}
 
 function clearSide() {
     side.innerHTML = '';
 }
 
-function showBookDetails(book) {
+function readBook(book) {
     clearSide();
 
     // יצירת כותרת הספר
@@ -245,7 +240,7 @@ function updateBook(book) {
                     if (index !== -1) {
                         books[index] = data; 
                     }
-                    displayBookList();
+                    loadBooks();
                     clearSide();
                 })
                 .catch(error => {
@@ -264,7 +259,9 @@ function deleteBook(bookId) {
             throw new Error('Network response was not ok');
         }
         books = books.filter(book => book.id !== bookId);
-        displayBookList();
+        loadBooks();
+        clearSide();
+
     })
     .catch(error => {
         console.error('Error deleting book:', error);
@@ -310,12 +307,11 @@ function addBook() {
     form.appendChild(descriptionInput);
     form.appendChild(descriptionError);
 
-    // שדה קובץ להעלאת תמונה
+    // שדה להוספת URL של תמונה
     const imageLabel = document.createElement('label');
-    imageLabel.textContent = 'Image:';
+    imageLabel.textContent = 'Image URL:';
     const imageInput = document.createElement('input');
-    imageInput.type = 'file';
-    imageInput.accept = 'image/*'; // רק תמונות
+    imageInput.type = 'url'; 
     const imageError = document.createElement('div');
     imageError.classList.add('error');
     form.appendChild(imageLabel);
@@ -351,26 +347,27 @@ function addBook() {
             valid = false;
         }
 
-        if (!imageInput.files.length) {
-            imageError.textContent = 'Image is required.';
+        if (!imageInput.value.trim() || !isValidURL(imageInput.value)) {
+            imageError.textContent = 'Valid image URL is required.';
             valid = false;
         }
 
         if (valid) {
             const newBook = {
+                id: books.length > 0 ? (Math.max(...books.map(book => book.id)) + 1).toString() : '1',
                 title: titleInput.value,
                 price: parseFloat(priceInput.value),
                 description: descriptionInput.value,
-                rating: 0 
+                image: imageInput.value, 
+                rating: 0
             };
-
-            const formData = new FormData();
-            formData.append('book', JSON.stringify(newBook));
-            formData.append('image', imageInput.files[0]);
 
             fetch('http://localhost:3000/books', {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newBook)
             })
                 .then(response => {
                     if (!response.ok) {
@@ -380,7 +377,7 @@ function addBook() {
                 })
                 .then(data => {
                     books.push(data);
-                    displayBookList();
+                    loadBooks();
                     clearSide();
                 })
                 .catch(error => {
@@ -388,4 +385,13 @@ function addBook() {
                 });
         }
     };
+}
+
+function isValidURL(string) {
+    try {
+        new URL(string);
+        return true;
+    } catch (_) {
+        return false;
+    }
 }
