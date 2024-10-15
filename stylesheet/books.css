@@ -7,9 +7,11 @@ body {
 .container{
     width: 100%;
 display: flex;
+justify-content: space-between; 
+/* gap: 10px; */
 }
 .table-container{
-    width: 60%;
+    width: 63%;
 }
 #book-table {
     width: 100%;
@@ -88,13 +90,17 @@ button {
 
 }
 #book-details {
-    width: 40%;
+    width: 33%;
+    height: 400px;
     margin-top: 20px;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+#book-image{
+    width: 150px;
 }
 
 #book-title {

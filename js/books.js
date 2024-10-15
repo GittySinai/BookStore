@@ -11,10 +11,23 @@ const bookRating = document.getElementById('book-rating');
 let currentPage = 1;
 const booksPerPage = 5;
 
+function loadBooksFromStorage() {
+    const storedBooks = localStorage.getItem('books');
+    if (storedBooks) {
+        books = JSON.parse(storedBooks);
+    }
+}
+
+function saveBooksToStorage() {
+    localStorage.setItem('books', JSON.stringify(books));
+}
+
 fetch('http://localhost:3000/books')
     .then(response => response.json())
     .then(data => {
         books = data;
+        books.sort((a, b) => a.title.localeCompare(b.title));
+        saveBooksToStorage();
         displayBookList();
     })
     .catch(error => {
@@ -23,8 +36,6 @@ fetch('http://localhost:3000/books')
 
 function displayBookList() {
     bookList.innerHTML = '';
-    books.sort((a, b) => a.title.localeCompare(b.title));
-
     const startIndex = (currentPage - 1) * booksPerPage;
     const endIndex = startIndex + booksPerPage;
     const currentBooks = books.slice(startIndex, endIndex);
@@ -98,10 +109,12 @@ function changePage(direction) {
 }
 
 function showBookDetails(book) {
-
-
-
+    bookTitle.innerHTML = book.title; // הצגת הכותרת
+    bookImage.src = book.image; // הצגת התמונה
+    bookPrice.innerHTML = `$${book.price.toFixed(2)}`; // הצגת המחיר בפורמט נכון
+    bookDescription.innerHTML = book.description; // הצגת התיאור
 }
+
 
 function updateBook(book) {
     // הוסף כאן את הקוד לעדכון הספר
@@ -109,6 +122,8 @@ function updateBook(book) {
 }
 
 function deleteBook(bookId) {
-    // הוסף כאן את הקוד למחיקת הספר
-    console.log('Delete book with ID:', bookId);
+    books=books.filter(book=> book.id!==bookId)
+    saveBooksToStorage()
+    displayBookList()
+ 
 }
