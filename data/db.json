@@ -1,149 +1,147 @@
 {
-    "books": [
-      {
-        "id": 1,
-        "title": "The Hobbit",
-        "price": 34.00,
-        "image": "../img/The Hobbit.jpg",
-        "description": "A fantasy novel by J.R.R. Tolkien.",
-        "rating": 0
-      },
-      {
-        "id": 2,
-        "title": "The Hitchhikers Guide to the Galaxy",
-        "price": 13.95,
-        "image": "../img/The Hitchhikers Guide to the Galaxy.jpg",
-        "description": "A comic science fiction series by Douglas Adams.",
-        "rating": 0
-      },
-      {
-        "id": 3,
-        "title": "The Lord Of The Rings",
-        "price": 32.55,
-        "image": "../img/The Lord Of The Rings.jpg",
-        "description": "An epic high fantasy novel by J.R.R. Tolkien.",
-        "rating": 0
-      },
-      {
-        "id": 4,
-        "title": "The Catcher in the Rye",
-        "price": 4.55,
-        "image": "../img/The Catcher in the Rye.jpg",
-        "description": "A novel by J.D. Salinger.",
-        "rating": 0
-      },
-      {
-        "id": 5,
-        "title": "Effective Modern C++",
-        "price": 34.00,
-        "image": "../img/Effective Modern C++.jpg",
-        "description": "A book by Scott Meyers about modern C++.",
-        "rating": 0
-      },
-      {
-        "id": 6,
-        "title": "To Kill a Mockingbird",
-        "price": 18.99,
-        "image": "../img/To Kill a Mockingbird.jpg",
-        "description": "A novel by Harper Lee published in 1960.",
-        "rating": 0
-      },
-      {
-        "id": 7,
-        "title": "1984",
-        "price": 9.99,
-        "image": "../img/1984.jpg",
-        "description": "A dystopian novel by George Orwell.",
-        "rating": 0
-      },
-      {
-        "id": 8,
-        "title": "Pride and Prejudice",
-        "price": 12.50,
-        "image": "../img/Pride and Prejudice.jpg",
-        "description": "A romantic novel by Jane Austen.",
-        "rating": 0
-      },
-      {
-        "id": 9,
-        "title": "Moby-Dick",
-        "price": 15.75,
-        "image": "../img/Moby-Dick.jpg",
-        "description": "A novel by Herman Melville about a whale.",
-        "rating": 0
-      },
-      {
-        "id": 10,
-        "title": "War and Peace",
-        "price": 25.00,
-        "image": "../img/War and Peace.jpg",
-        "description": "A historical novel by Leo Tolstoy.",
-        "rating": 0
-      },
-      {
-        "id": 11,
-        "title": "Brave New World",
-        "price": 10.99,
-        "image": "../img/Brave New World.jpg",
-        "description": "A dystopian novel by Aldous Huxley.",
-        "rating": 0
-      },
-      {
-        "id": 12,
-        "title": "The Great Gatsby",
-        "price": 8.99,
-        "image": "../img/The Great Gatsby.jpg",
-        "description": "A novel by F. Scott Fitzgerald.",
-        "rating": 0
-      },
-      {
-        "id": 13,
-        "title": "The Brothers Karamazov",
-        "price": 14.50,
-        "image": "../img/The Brothers Karamazov.jpg",
-        "description": "A novel by Fyodor Dostoevsky.",
-        "rating": 0
-      },
-      {
-        "id": 14,
-        "title": "Crime and Punishment",
-        "price": 13.99,
-        "image": "../img/Crime and Punishment.jpg",
-        "description": "A novel by Fyodor Dostoevsky.",
-        "rating": 0
-      },
-      {
-        "id": 15,
-        "title": "Frankenstein",
-        "price": 7.99,
-        "image": "../img/Frankenstein.jpg",
-        "description": "A novel by Mary Shelley.",
-        "rating": 0
-      },
-      {
-        "id": 16,
-        "title": "Don Quixote",
-        "price": 20.00,
-        "image": "../img/Don Quixote.jpg",
-        "description": "A novel by Miguel de Cervantes.",
-        "rating": 0
-      },
-      {
-        "id": 17,
-        "title": "The Odyssey",
-        "price": 11.49,
-        "image": "../img/The Odyssey.jpg",
-        "description": "An ancient Greek epic poem attributed to Homer.",
-        "rating": 0
-      },
-      {
-        "id": 18,
-        "title": "The Divine Comedy",
-        "price": 19.99,
-        "image": "../img/The Divine Comedy.jpg",
-        "description": "An epic poem by Dante Alighieri.",
-        "rating": 0
-      }
-    ]
-  }
-  
+  "books": [
+    {
+      "id": "1",
+      "title": "The Hobbit",
+      "price": 34,
+      "image": "../img/The Hobbit.jpg",
+      "description": "A fantasy novel by J.R.R. Tolkien.",
+      "rating": 0
+    },
+    {
+      "id": "2",
+      "title": "The Hitchhikers Guide to the Galaxy",
+      "price": 13.95,
+      "image": "../img/The Hitchhikers Guide to the Galaxy.jpg",
+      "description": "A comic science fiction series by Douglas Adams.",
+      "rating": 0
+    },
+    {
+      "id": "3",
+      "title": "The Lord Of The Rings",
+      "price": 32.55,
+      "image": "../img/The Lord Of The Rings.jpg",
+      "description": "An epic high fantasy novel by J.R.R. Tolkien.",
+      "rating": 0
+    },
+    {
+      "id": "4",
+      "title": "The Catcher in the Rye",
+      "price": 4.55,
+      "image": "../img/The Catcher in the Rye.jpg",
+      "description": "A novel by J.D. Salinger.",
+      "rating": 0
+    },
+    {
+      "id": "5",
+      "title": "Effective Modern C++",
+      "price": 34,
+      "image": "../img/Effective Modern C++.jpg",
+      "description": "A book by Scott Meyers about modern C++.",
+      "rating": 0
+    },
+    {
+      "id": "6",
+      "title": "To Kill a Mockingbird",
+      "price": 18.99,
+      "image": "../img/To Kill a Mockingbird.jpg",
+      "description": "A novel by Harper Lee published in 1960.",
+      "rating": 0
+    },
+    {
+      "id": "7",
+      "title": "1984",
+      "price": 9.99,
+      "image": "../img/1984.jpg",
+      "description": "A dystopian novel by George Orwell.",
+      "rating": 0
+    },
+    {
+      "id": "8",
+      "title": "Pride and Prejudice",
+      "price": 12.5,
+      "image": "../img/Pride and Prejudice.jpg",
+      "description": "A romantic novel by Jane Austen.",
+      "rating": 0
+    },
+    {
+      "id": "9",
+      "title": "Moby-Dick",
+      "price": 15.75,
+      "image": "../img/Moby-Dick.jpg",
+      "description": "A novel by Herman Melville about a whale.",
+      "rating": 0
+    },
+    {
+      "id": "10",
+      "title": "War and Peace",
+      "price": 25,
+      "image": "../img/War and Peace.jpg",
+      "description": "A historical novel by Leo Tolstoy.",
+      "rating": 0
+    },
+    {
+      "id": "11",
+      "title": "Brave!",
+      "price": 1000,
+      "description": "A dystopian novel by Aldous Huxley.",
+      "image": "../img/Brave New World.jpg"
+    },
+    {
+      "id": "12",
+      "title": "The Great Gatsby",
+      "price": 8.99,
+      "image": "../img/The Great Gatsby.jpg",
+      "description": "A novel by F. Scott Fitzgerald.",
+      "rating": 0
+    },
+    {
+      "id": "13",
+      "title": "The Brothers Karamazov",
+      "price": 14.5,
+      "image": "../img/The Brothers Karamazov.jpg",
+      "description": "A novel by Fyodor Dostoevsky.",
+      "rating": 0
+    },
+    {
+      "id": "14",
+      "title": "Crime and Punishment",
+      "price": 13.99,
+      "image": "../img/Crime and Punishment.jpg",
+      "description": "A novel by Fyodor Dostoevsky.",
+      "rating": 0
+    },
+    {
+      "id": "15",
+      "title": "Frankenstein",
+      "price": 7.99,
+      "image": "../img/Frankenstein.jpg",
+      "description": "A novel by Mary Shelley.",
+      "rating": 0
+    },
+    {
+      "id": "16",
+      "title": "Don Quixote",
+      "price": 20,
+      "image": "../img/Don Quixote.jpg",
+      "description": "A novel by Miguel de Cervantes.",
+      "rating": 0
+    },
+    {
+      "id": "17",
+      "title": "The Odyssey",
+      "price": 11.49,
+      "image": "../img/The Odyssey.jpg",
+      "description": "An ancient Greek epic poem attributed to Homer.",
+      "rating": 0
+    },
+    {
+      "id": "18",
+      "title": "The Divine Comedy",
+      "price": 19.99,
+      "image": "../img/The Divine Comedy.jpg",
+      "description": "An epic poem by Dante Alighieri.",
+      "rating": 0
+    }
+  ]
+}

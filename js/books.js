@@ -1,45 +1,35 @@
 let books = [];
 const bookList = document.getElementById('book-list');
-const bookDetails = document.getElementById('book-details');
-const bookTitle = document.getElementById('book-title');
-const bookImage = document.getElementById('book-image');
-const bookPrice= document.getElementById('book-price');
-const bookDescription = document.getElementById('book-description');
-const rateBook = document.getElementById('rate-book');
-const bookRating = document.getElementById('book-rating');
-
+const side = document.getElementById('side');
+loadBooks()
 let currentPage = 1;
 const booksPerPage = 5;
 
-function loadBooksFromStorage() {
-    const storedBooks = localStorage.getItem('books');
-    if (storedBooks) {
-        books = JSON.parse(storedBooks);
-    }
-}
+function loadBooks() {
 
-function saveBooksToStorage() {
-    localStorage.setItem('books', JSON.stringify(books));
-}
+    fetch('http://localhost:3000/books')
+        .then(response => response.json())
+        .then(data => {
+            books = data;
+            books.sort((a, b) => a.title.localeCompare(b.title));
+            displayBookList();
+        })
+        .catch(error => {
+            console.error('Error fetching books:', error);
+        });
 
-fetch('http://localhost:3000/books')
-    .then(response => response.json())
-    .then(data => {
-        books = data;
-        books.sort((a, b) => a.title.localeCompare(b.title));
-        saveBooksToStorage();
-        displayBookList();
-    })
-    .catch(error => {
-        console.error('Error fetching books:', error);
-    });
+}
+function clearSide() {
+    side.innerHTML = '';
+}
 
 function displayBookList() {
     bookList.innerHTML = '';
     const startIndex = (currentPage - 1) * booksPerPage;
     const endIndex = startIndex + booksPerPage;
     const currentBooks = books.slice(startIndex, endIndex);
-    
+    books.sort((a, b) => a.title.localeCompare(b.title));
+
     currentBooks.forEach(book => {
         const row = document.createElement('tr');
 
@@ -55,7 +45,7 @@ function displayBookList() {
 
         // עמודת Price
         const priceCell = document.createElement('td');
-        priceCell.textContent = `$${book.price.toFixed(2)}`; 
+        priceCell.textContent = `$${book.price.toFixed(2)}`;
         row.appendChild(priceCell);
 
         // עמודת Action
@@ -100,7 +90,7 @@ function changePage(direction) {
     const totalPages = Math.ceil(books.length / booksPerPage);
 
     if (direction === -1 && currentPage > 1) {
-        currentPage--; 
+        currentPage--;
     } else if (direction === 1 && currentPage < totalPages) {
         currentPage++;
     }
@@ -115,15 +105,287 @@ function showBookDetails(book) {
     bookDescription.innerHTML = book.description; // הצגת התיאור
 }
 
+function clearSide() {
+    side.innerHTML = '';
+}
+
+function showBookDetails(book) {
+    clearSide();
+
+    // יצירת כותרת הספר
+    const title = document.createElement('h2');
+    title.textContent = book.title;
+    side.appendChild(title);
+
+    // יצירת תמונה
+    const image = document.createElement('img');
+    image.classList.add('book-image')
+    image.src = book.image;
+    side.appendChild(image);
+
+    // יצירת מחיר
+    const price = document.createElement('p');
+    price.classList.add('book-price')
+    price.textContent = `$${book.price.toFixed(2)}`;
+    side.appendChild(price);
+
+    // יצירת תיאור
+    const description = document.createElement('p');
+    description.classList.add('book-description')
+    description.textContent = book.description;
+    side.appendChild(description);
+
+    // יצירת כפתור דירוג
+    const rateButton = document.createElement('button');
+    rateButton.classList.add('rate-book')
+    rateButton.textContent = 'Rate';
+    side.appendChild(rateButton);
+
+    // יצירת שדה דירוג
+    const ratingInput = document.createElement('input');
+    ratingInput.type = 'number';
+    rateButton.textContent = book.rating;
+    ratingInput.min = '1';
+    ratingInput.max = '5';
+    side.appendChild(ratingInput);
+}
 
 function updateBook(book) {
-    // הוסף כאן את הקוד לעדכון הספר
-    console.log('Update book with ID:', book.id);
+    clearSide();
+    const form = document.createElement('form');
+
+    // שדה כותרת
+    const titleLabel = document.createElement('label');
+    titleLabel.textContent = 'Title:';
+    const titleInput = document.createElement('input');
+    titleInput.type = 'text';
+    titleInput.value = book.title;
+    const titleError = document.createElement('div');
+    titleError.classList.add('error');
+    form.appendChild(titleLabel);
+    form.appendChild(titleInput);
+    form.appendChild(titleError);
+
+    // שדה מחיר
+    const priceLabel = document.createElement('label');
+    priceLabel.textContent = 'Price:';
+    const priceInput = document.createElement('input');
+    priceInput.type = 'number';
+    priceInput.step = '0.01';
+    priceInput.value = book.price;
+    const priceError = document.createElement('div');
+    priceError.classList.add('error');
+    form.appendChild(priceLabel);
+    form.appendChild(priceInput);
+    form.appendChild(priceError);
+
+    // שדה תיאור
+    const descriptionLabel = document.createElement('label');
+    descriptionLabel.textContent = 'Description:';
+    const descriptionInput = document.createElement('textarea');
+    descriptionInput.textContent = book.description;
+    const descriptionError = document.createElement('div');
+    descriptionError.classList.add('error');
+    form.appendChild(descriptionLabel);
+    form.appendChild(descriptionInput);
+    form.appendChild(descriptionError);
+
+    // כפתור שמירה
+    const saveButton = document.createElement('button');
+    saveButton.textContent = 'Save Changes';
+    form.appendChild(saveButton);
+    side.appendChild(form);
+
+    form.onsubmit = (event) => {
+        event.preventDefault();
+        titleError.textContent = '';
+        priceError.textContent = '';
+        descriptionError.textContent = '';
+        let valid = true;
+
+        if (!titleInput.value.trim()) {
+            titleError.textContent = 'Title is required.';
+            valid = false;
+        }
+
+        if (!priceInput.value || parseFloat(priceInput.value) <= 0) {
+            priceError.textContent = 'Price must be a positive number.';
+            valid = false;
+        }
+
+        if (!descriptionInput.value.trim()) {
+            descriptionError.textContent = 'Description is required.';
+            valid = false;
+        }
+
+        if (valid) {
+            const updatedBook = {
+                id: book.id,
+                title: titleInput.value,
+                price: parseFloat(priceInput.value),
+                description: descriptionInput.value,
+                image: book.image
+            };
+
+            fetch(`http://localhost:3000/books/${book.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedBook)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const index = books.findIndex(b => b.id === book.id);
+                    if (index !== -1) {
+                        books[index] = data; 
+                    }
+                    displayBookList();
+                    clearSide();
+                })
+                .catch(error => {
+                    console.error('Error updating book:', error);
+                });
+        }
+    };
 }
 
 function deleteBook(bookId) {
-    books=books.filter(book=> book.id!==bookId)
-    saveBooksToStorage()
-    displayBookList()
- 
+    fetch(`http://localhost:3000/books/${bookId}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        books = books.filter(book => book.id !== bookId);
+        displayBookList();
+    })
+    .catch(error => {
+        console.error('Error deleting book:', error);
+    });
+}
+function addBook() {
+    clearSide();
+    const form = document.createElement('form');
+    const title = document.createElement('h2');
+    title.textContent = 'Add Book:';
+    form.appendChild(title);
+
+    // שדה כותרת
+    const titleLabel = document.createElement('label');
+    titleLabel.textContent = 'Title:';
+    const titleInput = document.createElement('input');
+    titleInput.type = 'text';
+    const titleError = document.createElement('div');
+    titleError.classList.add('error');
+    form.appendChild(titleLabel);
+    form.appendChild(titleInput);
+    form.appendChild(titleError);
+
+    // שדה מחיר
+    const priceLabel = document.createElement('label');
+    priceLabel.textContent = 'Price:';
+    const priceInput = document.createElement('input');
+    priceInput.type = 'number';
+    priceInput.step = '0.01';
+    const priceError = document.createElement('div');
+    priceError.classList.add('error');
+    form.appendChild(priceLabel);
+    form.appendChild(priceInput);
+    form.appendChild(priceError);
+
+    // שדה תיאור
+    const descriptionLabel = document.createElement('label');
+    descriptionLabel.textContent = 'Description:';
+    const descriptionInput = document.createElement('textarea');
+    const descriptionError = document.createElement('div');
+    descriptionError.classList.add('error');
+    form.appendChild(descriptionLabel);
+    form.appendChild(descriptionInput);
+    form.appendChild(descriptionError);
+
+    // שדה קובץ להעלאת תמונה
+    const imageLabel = document.createElement('label');
+    imageLabel.textContent = 'Image:';
+    const imageInput = document.createElement('input');
+    imageInput.type = 'file';
+    imageInput.accept = 'image/*'; // רק תמונות
+    const imageError = document.createElement('div');
+    imageError.classList.add('error');
+    form.appendChild(imageLabel);
+    form.appendChild(imageInput);
+    form.appendChild(imageError);
+
+    // כפתור שמירה
+    const saveButton = document.createElement('button');
+    saveButton.textContent = 'Add Book';
+    form.appendChild(saveButton);
+    side.appendChild(form);
+
+    form.onsubmit = (event) => {
+        event.preventDefault();
+        titleError.textContent = '';
+        priceError.textContent = '';
+        descriptionError.textContent = '';
+        imageError.textContent = '';
+        let valid = true;
+
+        if (!titleInput.value.trim()) {
+            titleError.textContent = 'Title is required.';
+            valid = false;
+        }
+
+        if (!priceInput.value || parseFloat(priceInput.value) <= 0) {
+            priceError.textContent = 'Price must be a positive number.';
+            valid = false;
+        }
+
+        if (!descriptionInput.value.trim()) {
+            descriptionError.textContent = 'Description is required.';
+            valid = false;
+        }
+
+        if (!imageInput.files.length) {
+            imageError.textContent = 'Image is required.';
+            valid = false;
+        }
+
+        if (valid) {
+            const newBook = {
+                title: titleInput.value,
+                price: parseFloat(priceInput.value),
+                description: descriptionInput.value,
+                rating: 0 
+            };
+
+            const formData = new FormData();
+            formData.append('book', JSON.stringify(newBook));
+            formData.append('image', imageInput.files[0]);
+
+            fetch('http://localhost:3000/books', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    books.push(data);
+                    displayBookList();
+                    clearSide();
+                })
+                .catch(error => {
+                    console.error('Error adding book:', error);
+                });
+        }
+    };
 }

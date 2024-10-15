@@ -13,6 +13,7 @@ justify-content: space-between;
 .table-container{
     width: 63%;
 }
+
 #book-table {
     width: 100%;
 
@@ -63,33 +64,35 @@ button {
     cursor: pointer; 
 }
 .update-button{
-    background-color:#00ff0d; 
-
+    background-color:#04d30e; 
 }
 .delete-button{
     background-color:#ff0037; 
-
 }
 .read-button{
     background-color:#007bff; 
 }
+.add-button{
+    background-color:#9500ff; 
+}
 .update-button:hover{
-    background-color:#00b709; 
-
+    background-color:#008d07; 
 }
 .delete-button:hover{
     background-color:#c9002c; 
-
 }
 .read-button:hover{
     background-color: #0056b3; 
 }
+.add-button:hover{
+    background-color:#6001a3; 
 
+}
 .prev-btn,.next-btn,.language-toggle{
     background-color: #777779; 
 
 }
-#book-details {
+#side {
     width: 33%;
     height: 400px;
     margin-top: 20px;
@@ -99,45 +102,82 @@ button {
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-#book-image{
-    width: 150px;
-}
 
-#book-title {
+
+.book-title {
     font-size: 24px;
     color: #333;
     margin: 0 0 10px 0;
 }
 
-#book-image {
-    max-width: 100%;
-    height: auto;
+.book-image {
+    height: 200px;
+    width: auto;
     border-radius: 5px;
     margin-bottom: 10px;
 }
 
-#book-price {
+.book-price {
     font-size: 18px;
     color: #007bff;
     margin: 5px 0;
 }
 
-#book-description {
+.book-description {
     font-size: 16px;
     color: #555;
     margin: 10px 0;
 }
 
-#rate-book {
+.rate-book {
     background-color: #28a745;
     color: white;
     border: none;
     border-radius: 5px;
     padding: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
     cursor: pointer;
     margin-top: 10px;
 }
 
-#rate-book:hover {
+.rate-book:hover {
     background-color: #218838;
+}
+form input[type="text"], form input[type="number"], form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+form textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
 }
