@@ -6,19 +6,27 @@ let currentPage = 1;
 const booksPerPage = 5;
 
 function loadBooks() {
-
     fetch('http://localhost:3000/books')
         .then(response => response.json())
         .then(data => {
             books = data;
+
+            books.forEach(book => {
+                const storedRating = localStorage.getItem(`book-rating-${book.id}`);
+                if (storedRating) {
+                    book.rating = storedRating;
+                }
+            });
+
             books.sort((a, b) => a.title.localeCompare(b.title));
             displayBookList();
         })
         .catch(error => {
             console.error('Error fetching books:', error);
         });
-
 }
+
+
 function clearSide() {
     side.innerHTML = '';
 }
@@ -99,7 +107,6 @@ function changePage(direction) {
     displayBookList();
 }
 
-
 function clearSide() {
     side.innerHTML = '';
 }
@@ -114,36 +121,50 @@ function readBook(book) {
 
     // יצירת תמונה
     const image = document.createElement('img');
-    image.classList.add('book-image')
+    image.classList.add('book-image');
     image.src = book.image;
     side.appendChild(image);
 
     // יצירת מחיר
     const price = document.createElement('p');
-    price.classList.add('book-price')
+    price.classList.add('book-price');
     price.textContent = `$${book.price.toFixed(2)}`;
     side.appendChild(price);
 
     // יצירת תיאור
     const description = document.createElement('p');
-    description.classList.add('book-description')
+    description.classList.add('book-description');
     description.textContent = book.description;
     side.appendChild(description);
-
-    // יצירת כפתור דירוג
-    const rateButton = document.createElement('button');
-    rateButton.classList.add('rate-book')
-    rateButton.textContent = 'Rate';
-    side.appendChild(rateButton);
 
     // יצירת שדה דירוג
     const ratingInput = document.createElement('input');
     ratingInput.type = 'number';
-    rateButton.textContent = book.rating;
+    ratingInput.value = book.rating || ''; 
     ratingInput.min = '1';
     ratingInput.max = '5';
     side.appendChild(ratingInput);
+
+    // יצירת כפתור דירוג
+    const rateButton = document.createElement('button');
+    rateButton.classList.add('rate-book');
+    rateButton.textContent = 'Rate';
+    side.appendChild(rateButton);
+
+    // פונקציה לשמירת הדירוג בלוקל סטורג'
+    rateButton.onclick = () => {
+        const rating = ratingInput.value;
+        
+        if (rating >= 1 && rating <= 5) {
+            localStorage.setItem(`book-rating-${book.id}`, rating); 
+            book.rating = rating;
+            alert('Rating saved!');
+        } else {
+            alert('Please enter a rating between 1 and 5.');
+        }
+    };
 }
+
 
 function updateBook(book) {
     clearSide();
